@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Set culture to invariant.
@@ -22,7 +23,8 @@ builder.Services.AddDefaultIdentity<AppUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddRoles<IdentityRole>()                           
+    .AddEntityFrameworkStores<ApplicationDbContext>(); 
 
 builder.Services.AddControllersWithViews();
 
@@ -47,6 +49,19 @@ var localizationOptions = new RequestLocalizationOptions
     SupportedCultures = new List<CultureInfo> { cultureInfo },
     //SupportedUICultures = new List<CultureInfo> { cultureInfo }
 };
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    const string adminRoleName = "Admin";
+
+    // jeœli rola nie istnieje – utwórz
+    if (!await roleManager.RoleExistsAsync(adminRoleName))
+    {
+        await roleManager.CreateAsync(new IdentityRole(adminRoleName));
+    }
+}
 
 app.UseHttpsRedirection();
 app.UseRouting();
