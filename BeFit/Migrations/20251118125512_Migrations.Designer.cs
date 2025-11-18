@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeFit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251117214415_Migrations")]
+    [Migration("20251118125512_Migrations")]
     partial class Migrations
     {
         /// <inheritdoc />
