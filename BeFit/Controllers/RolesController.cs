@@ -39,7 +39,7 @@ namespace BeFit.Controllers
                 await _userManager.AddToRoleAsync(user, "Admin");
             }
 
-            return Content($"Użytkownik {user.Email} ma teraz rolę ADMIN ✅");
+            return Content($"Użytkownik {user.Email} ma teraz rolę ADMIN");
         }
     }
 }

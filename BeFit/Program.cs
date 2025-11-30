@@ -56,7 +56,7 @@ using (var scope = app.Services.CreateScope())
 
     const string adminRoleName = "Admin";
 
-    // jeœli rola nie istnieje – utwórz
+   
     if (!await roleManager.RoleExistsAsync(adminRoleName))
     {
         await roleManager.CreateAsync(new IdentityRole(adminRoleName));

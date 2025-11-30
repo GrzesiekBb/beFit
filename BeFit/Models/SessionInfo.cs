@@ -18,6 +18,7 @@ namespace BeFit.Models
         [Display(Name = "Koniec sesji")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime End { get; set; }
+        [Required]
         [Display(Name = "Utworzona przez")]
         public string CreatedById { get; set; } = string.Empty;
 
